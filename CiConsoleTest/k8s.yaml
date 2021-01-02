@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: CiConsoleTest
+  labels:
+    app: CiConsoleTest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: CiConsoleTest
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\AgileNav\Quiz\kompose\kompose.exe convert -f .\docker-compose.yaml
+        kompose.version: 1.20.0 (f3d54d784)
+      labels:
+        io.kompose.network/agilenav-network: "true"
+        io.kompose.service: CiConsoleTest
+        app: CiConsoleTest
+        version: IMAGE_LABEL
+    spec:
+      containers:
+      - name: CiConsoleTest
+        ports:
+        - containerPort: 80
+        resources: {}
+        image: ACR_URL/CiConsoleTest:IMAGE_LABEL
+        volumeMounts:
+        - mountPath: /app/config
+          name: config-volume
+      restartPolicy: Always
+      imagePullSecrets:
+      - name: regcred
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: CiConsoleTest-config
+        name: config-volume
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: CiConsoleTest
+  name: CiConsoleTest
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    targetPort: 80
+  selector:
+    io.kompose.service: CiConsoleTest
+  type: ClusterIP
+status:
+  loadBalancer: {}
+
