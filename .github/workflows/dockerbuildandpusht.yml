@@ -1,0 +1,27 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      
+      
+    - name: GitHub Action for DigitalOcean - doctl
+      uses: digitalocean/action-doctl@v2.1.0
+      with:
+        token: {{ secrets.DO_TOKEN }}
+      
+    - name: Build Docker Image]
+      run: |
+        docker build --tag {{ secrets.ACR_URL }}/ciconsoletest:${{ gihub.sha }} ./CiConsoleTest
+        docker push {{ secrets.ACR_URL }}/ciconsoletest:${{ gihub.sha }}
+      
