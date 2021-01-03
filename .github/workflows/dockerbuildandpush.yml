@@ -6,7 +6,9 @@ on:
     - main
 
 env:
-  NODE_VERSION: 'v0.0.1'
+  IMAGE_NAME: 'ciconsoletest'
+  IMAGE_TAG: 'latest'
+  DO_REGISTRY_URL: 'registry.digitalocean.com/agilenav'
 
 jobs:
 
@@ -25,6 +27,6 @@ jobs:
     - name: Build Docker Image]
       run: |
         doctl registry login --expiry-seconds 600
-        docker build --tag registry.digitalocean.com/agilenav/ciconsoletest:${{ env.NODE_VERSION }} .
-        docker push registry.digitalocean.com/agilenav/ciconsoletest:${{ env.NODE_VERSION }}
+        docker build --tag ${{ env.DO_REGISTRY_URL }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
+        docker push ${{ env.DO_REGISTRY_URL }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
       
