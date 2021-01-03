@@ -11,7 +11,7 @@ RUN dotnet restore
 COPY . .
 
 RUN dotnet build -c Release
-RUN dotnet test --logger trx
+RUN dotnet test
 RUN dotnet publish -c Release -o /dist
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine

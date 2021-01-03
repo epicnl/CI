@@ -11,9 +11,9 @@ namespace CiConsoleTest.Test
         {
             var pit = new Ping();
 
-            var result = pit.Handle();
+            var result = pit.Handle($"Ping");
 
-            Assert.Equal("POng", result);
+            Assert.Equal("Pong", result);
         }
     }
 }

@@ -6,8 +6,8 @@ namespace CiConsoleTest
             
         }
 
-        public string Handle(){
-            return $"Ping";
+        public string Handle(string input){
+            return $"Pong";
         }
     }
 }
