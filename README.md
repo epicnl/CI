@@ -1,11 +1,11 @@
 # CI
 CI test repository
 
+Inspiring video from Rob Richardson who builds, tests, pushes and deploys a .net core docker image
+https://www.youtube.com/watch?v=TMbXwNtuAJo&list=WL&index=5&t=1459s
+
+Step by step creating test project and testing docker image after build
 https://medium.com/@JoeHonour/a-guide-to-setting-up-a-net-core-project-using-docker-with-integrated-unit-and-component-tests-a326ca5a0284
-
-# docker tag c9bf75fffad5 registry.digitalocean.com/agilenav/ciconsoletest
-# docker push registry.digitalocean.com/agilenav/ciconsoletest
-
 
 
 # start new service script
