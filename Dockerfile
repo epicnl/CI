@@ -2,7 +2,10 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS build
 
 WORKDIR /src
 
-COPY CiConsoleTest.csproj .
+COPY *.sln .
+COPY CiConsoleTest/*.csproj ./CiConsoleTest/
+COPY CiConsoleTest.Test/*.csproj ./CiConsoleTest.Test/
+
 RUN dotnet restore
 
 COPY . .
@@ -21,4 +24,5 @@ ENV ASPNETCORE_ENVORONMENT Production
 ENV ASPNETCORE_URLS http://+:80
 EXPOSE 80
 
-CMD ["dotnet",  "CiConsoleTest.dll"]
+CMD ["dotnet", "CiConsoleTest.dll"]
+
