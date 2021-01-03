@@ -13,7 +13,7 @@ namespace CiConsoleTest.Test
 
             var result = pit.Handle();
 
-            Assert.Equal("Ping", result);
+            Assert.Equal("POng", result);
         }
     }
 }
